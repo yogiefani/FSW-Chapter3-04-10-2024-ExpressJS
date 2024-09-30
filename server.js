@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
         "message" : "Application is running good.."
     })
 })
+// url /yogi
 app.get("/yogi", (req, res) => {
     res.status(200).json({
         "status": "Success",
