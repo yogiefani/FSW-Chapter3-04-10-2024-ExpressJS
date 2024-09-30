@@ -4,13 +4,17 @@
   "description": "ini live coding bersama yogi",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Yogi Efani Yancandra",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0",
-    "morgan": "^1.10.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.7"
   }
 }
