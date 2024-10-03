@@ -56,6 +56,33 @@ app.post("/api/v1/cars", (req, res) => {
   });
 });
 
+app.get("/api/v1/cars/:id", (req, res) => {
+  //select * from fsw2 where id="1" or NAME = "Yogi"
+  const id = req.params.id;
+  console.log(id);
+  
+  const car = cars.find((i) => i.id === id)
+
+  //salah satu basic error handling
+  if(!car){
+    return res.status(404).json({
+      status: "Failed",
+      message: `Failed get car data this id : ${id}`,
+      isSuccess: false,
+      data: null,
+      });
+  }
+
+  res.status(200).json({
+    status: "Success",
+    message: "Success get car data by id",
+    isSuccess: true,
+    data: {
+      car,
+    },
+    });
+});
+
 //middleware / handler untuk url yang tidak dapat diakses karena memang tidak ada di aplikasi
 // membuat middleware = our own middleware
 app.use((req, res, next) => {
