@@ -123,6 +123,38 @@ app.patch("/api/v1/cars/:id", (req, res) => {
   });
 })
 
+// delete
+app.delete("/api/v1/cars/:id", (req, res) => {
+  const id = req.params.id;
+
+  //mencari data by id
+  const car = cars.find((i) => i.id === id);
+  //mencari index 
+  const carIndex = cars.findIndex((i) => i.id === id)
+
+  //melakukan penghapusan data sesuai index nya = req.params.id
+  cars.splice(carIndex, 1);
+  if(!car){
+    return res.status(404).json({
+      status: "Failed",
+      message: `Failed to delete car data this id: ${id}`,
+      isSuccess: false,
+    })
+  }
+  
+  fs.writeFile(`${__dirname}/assets/data/cars.json`, 
+    JSON.stringify(cars), 
+    (err) => {
+    res.status(201).json({
+      status: "Success",
+      message: `Success delete car data by id: ${id}`,
+      isSuccess: true,
+      data: null
+    });
+  });
+
+});
+
 //middleware / handler untuk url yang tidak dapat diakses karena memang tidak ada di aplikasi
 // membuat middleware = our own middleware
 app.use((req, res, next) => {
