@@ -73,6 +73,11 @@ app.get("/api/v1/cars/:id", (req, res) => {
       });
   }
 
+  app.patch("/api/v1/cars/:id", (req, res) => {
+    //UPDATE ... FROM =(table) WHERE id=req.param.id
+    
+  })
+
   res.status(200).json({
     status: "Success",
     message: "Success get car data by id",
