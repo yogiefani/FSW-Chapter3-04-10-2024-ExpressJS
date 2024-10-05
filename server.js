@@ -1,6 +1,7 @@
 const fs = require("fs");
 // const http = require("http")
 const express = require("express");
+// const { Products } = require("./models");
 
 const app = express();
 
@@ -14,17 +15,28 @@ app.get("/", (req, res) => {
     message: "Application is running good..",
   });
 });
-// url /yogi
-app.get("/yogi", (req, res) => {
-  res.status(200).json({
-    status: "Success",
-    message: "Ping Successfully !",
-  });
-});
+
+
 ///api.v1/(collection nya ) => collection nya ini harus JAMAK (s)
 const cars = JSON.parse(
   fs.readFileSync(`${__dirname}/assets/data/cars.json`, "utf-8")
 );
+
+app.get("/api/v1/products", (req, res) => {
+  // Products.findAll().then((products)) => {
+
+    res.status(200).json({
+      status: "Success",
+      message: "Success get cars data",
+      isSuccess: true,
+      totalData: cars.length,
+      data: {
+        cars,
+      },
+    });
+  // };
+
+});
 
 app.get("/api/v1/cars", (req, res) => {
   res.status(200).json({
